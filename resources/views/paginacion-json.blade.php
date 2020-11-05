@@ -37,16 +37,17 @@
         const totalPage = Math.round(total / per_page);
         let result = `<nav>
     <ul class="pagination">
-        <li aria-disabled="true" aria-label="« Previous" class="page-item disabled">
+        <li aria-disabled="true" aria-label="« Previous" class="page-item" onclick="getItem(${current_page - 1})">
             <span aria-hidden="true" class="page-link"> ‹</span></li>`;
         for (let index = 0; index < totalPage; index++) {
             let a =index+1;
-            result += `<li class="page-item">
-            <a onclick="getItem(${a})" class="page-link ${current_page == index ? 'active': ''}"> ${a} </a> </li>`;            
+            console.log(current_page,a)
+            result += `<li class="page-item ${current_page == a ? 'active': '' }">
+            <a onclick="getItem(${a})" class="page-link "> ${a} </a> </li>`;            
         }
         result += `      
         <li class="page-item">
-            <a href="getItem(${current_page++})" rel="next" aria-label="Next »" class="page-link"> › </a> </li>
+            <a onclick="getItem(${current_page + 1})" rel="next" aria-label="Next »" class="page-link"> › </a> </li>
     </ul>
 </nav>`;
         return result;
